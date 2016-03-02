@@ -142,6 +142,6 @@ class CatalogFacetIndex(CatalogKeywordIndex):
 def cachekey(set):
     h = md5()
     for item in sorted(list(set)):
-        h.update(item)
+        h.update(item.encode())
     return h.hexdigest()
 

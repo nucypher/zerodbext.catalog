@@ -222,16 +222,13 @@ class CatalogFieldIndex(CatalogIndex, FieldIndex):
         marker = _marker
         _missing = []
 
-        def get(k, rev_index=self._rev_index, marker=marker):
-            v = rev_index.get(k, marker)
-            if v is marker:
-                _missing.append(k)
-            return v
+        pairs = []
+        for docid in docids:
+            v = self._rev_index.get(docid, marker)
+            if v is not marker:
+                pairs.append((docid, v))
 
-        for docid in sorted(docids, key=get, reverse=reverse):
-            if docid in _missing:
-                # skip docids not in this index
-                continue
+        for (docid, _) in sorted(pairs, key=lambda p: p[1], reverse=reverse):
             n += 1
             yield docid
             if limit and n >= limit:
@@ -252,7 +249,7 @@ class CatalogFieldIndex(CatalogIndex, FieldIndex):
         if len(sets) == 1:
             result = sets[0]
         elif operator == 'and':
-            sets.sort()
+            sets.sort(key=len)
             for set in sets:
                 result = self.family.IF.intersection(set, result)
         else:

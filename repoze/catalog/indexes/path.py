@@ -63,10 +63,10 @@ class CatalogPathIndex(CatalogIndex):
            level is the level of the component inside the path
         """
 
-        if not self._index.has_key(comp):
+        if comp not in self._index:
             self._index[comp] = self.family.IO.BTree()
 
-        if not self._index[comp].has_key(level):
+        if level not in self._index[comp]:
             self._index[comp][level] = self.family.IF.TreeSet()
 
         self._index[comp][level].insert(id)
@@ -101,9 +101,9 @@ class CatalogPathIndex(CatalogIndex):
         if isinstance(path, (list, tuple)):
             path = '/'+ '/'.join(path[1:])
 
-        comps = filter(None, path.split('/'))
+        comps = [c for c in path.split('/') if c]
 
-        if not self._unindex.has_key(docid):
+        if docid not in self._unindex:
             self._length.change(1)
 
         for i in range(len(comps)):
@@ -117,7 +117,7 @@ class CatalogPathIndex(CatalogIndex):
         if docid in _not_indexed:
             _not_indexed.remove(docid)
 
-        if not self._unindex.has_key(docid):
+        if docid not in self._unindex:
             return
 
         comps =  self._unindex[docid].split('/')
@@ -157,7 +157,7 @@ class CatalogPathIndex(CatalogIndex):
             level = int(path[1])
             path  = path[0]
 
-        comps = filter(None, path.split('/'))
+        comps = [c for c in path.split('/') if c]
 
         if len(comps) == 0:
             return self.family.IF.Set(self._unindex.keys())
@@ -165,9 +165,9 @@ class CatalogPathIndex(CatalogIndex):
         results = None
         if level >= 0:
             for i, comp in enumerate(comps):
-                if not self._index.has_key(comp):
+                if comp not in self._index:
                     return self.family.IF.Set()
-                if not self._index[comp].has_key(level+i):
+                if level+i not in self._index[comp]:
                     return self.family.IF.Set()
                 results = self.family.IF.intersection(
                     results, self._index[comp][level+i])
@@ -221,7 +221,7 @@ class CatalogPathIndex(CatalogIndex):
 
         else:
             rs = None
-            sets.sort(lambda x, y: len(x) < len(y))
+            sets.sort(key=len)
             for set in sets:
                 rs = self.family.IF.intersection(rs, set)
                 if not rs:

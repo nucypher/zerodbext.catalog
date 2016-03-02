@@ -514,7 +514,7 @@ class Or(BoolOp):
                 else:
                     uppers[query.index_name] = (i, query)
 
-        queries = filter(None, queries)
+        queries = [q for q in queries if q]
         if len(queries) == 1:
             return queries[0]
 
@@ -577,7 +577,7 @@ class And(BoolOp):
                 else:
                     uppers[query.index_name] = (i, query)
 
-        queries = filter(None, queries)
+        queries = [q for q in queries if q]
         if len(queries) == 1:
             return queries[0]
 
@@ -803,6 +803,9 @@ class _AstParser(object):
     def process_UnaryOp(self, node, children):
         operator, query = children
         return operator(query)
+
+    def process_USub(self, node, children):
+        return Not
 
     def process_Compare(self, node, children):
         # Python allows arbitrary chaining of comparisons, ie:

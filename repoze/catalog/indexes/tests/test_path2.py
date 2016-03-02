@@ -69,7 +69,6 @@ class CatalogPathIndex2Tests(unittest.TestCase):
     def test_empty_index(self):
         index = self._makeOne({})
         self.assertEqual(len(index), 0)
-        self.assertTrue(index) # True even if empty
 
     def test_nonempty_index(self):
         index = self._makeOne(VALUES)
@@ -118,7 +117,7 @@ class CatalogPathIndex2Tests(unittest.TestCase):
 
     def test_unindex_doc(self):
         index = self._makeOne(VALUES)
-        docids = VALUES.keys()
+        docids = list(VALUES.keys())
 
         for doc_id in docids:
             index.unindex_doc(doc_id)
@@ -414,7 +413,7 @@ class CatalogPathIndex2Tests(unittest.TestCase):
         attr_keys = sorted(index.docid_to_attr.keys())
         self.assertEqual(attr_keys, [0, 2, 8, 12])
 
-        docids = VALUES.keys()
+        docids = list(VALUES.keys())
 
         for doc_id in docids:
             index.unindex_doc(doc_id)

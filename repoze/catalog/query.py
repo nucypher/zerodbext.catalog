@@ -1,3 +1,4 @@
+import six
 import BTrees
 import sys
 
@@ -495,7 +496,7 @@ class Or(BoolOp):
                 query_lower.negate(), query_upper.negate())
             queries[i_upper] = None
 
-        for i in xrange(len(queries)):
+        for i in six.moves.xrange(len(queries)):
             query = queries[i]
             if type(query) in (Lt, Le):
                 match = uppers.get(query.index_name)
@@ -558,7 +559,7 @@ class And(BoolOp):
             queries[i_lower] = InRange.fromGTLT(query_lower, query_upper)
             queries[i_upper] = None
 
-        for i in xrange(len(queries)):
+        for i in six.moves.xrange(len(queries)):
             query = queries[i]
             if type(query) in (Gt, Ge):
                 match = uppers.get(query.index_name)
@@ -742,7 +743,7 @@ class _AstParser(object):
 
     def process_List(self, node, children):
         l = list(children[:-1])
-        for i in xrange(len(l)):
+        for i in six.moves.xrange(len(l)):
             if isinstance(l[i], ast.Name):
                 l[i] = self._value(l[i])
         return l

@@ -1,3 +1,4 @@
+import six
 import BTrees
 from persistent.mapping import PersistentMapping
 import transaction
@@ -145,7 +146,7 @@ class Catalog(PersistentMapping):
         (num, resultseq)."""
         try:
             from repoze.catalog.query import parse_query
-            if isinstance(queryobject, basestring):
+            if isinstance(queryobject, six.string_types):
                 queryobject = parse_query(queryobject)
         except ImportError: #pragma NO COVERAGE
             pass

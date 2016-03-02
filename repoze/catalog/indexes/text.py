@@ -1,3 +1,4 @@
+import six
 from zope.interface import implementer
 
 from zope.index.interfaces import IIndexSort
@@ -24,7 +25,7 @@ class CatalogTextIndex(CatalogIndex, TextIndex):
 
     def __init__(self, discriminator, lexicon=None, index=None):
         if not callable(discriminator):
-            if not isinstance(discriminator, basestring):
+            if not isinstance(discriminator, six.string_types):
                 raise ValueError('discriminator value must be callable or a '
                                  'string')
         self.discriminator = discriminator

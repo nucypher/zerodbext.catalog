@@ -1,3 +1,4 @@
+import six
 from zope.interface import implementer
 from persistent import Persistent
 
@@ -41,7 +42,7 @@ class CatalogPathIndex(CatalogIndex):
 
     def __init__(self, discriminator):
         if not callable(discriminator):
-            if not isinstance(discriminator, basestring):
+            if not isinstance(discriminator, six.string_types):
                 raise ValueError('discriminator value must be callable or a '
                                  'string')
         self.discriminator = discriminator
@@ -150,7 +151,7 @@ class CatalogPathIndex(CatalogIndex):
         level >= 0  starts searching at the given level
         level <  0  not implemented yet
         """
-        if isinstance(path, basestring):
+        if isinstance(path, six.string_types):
             level = default_level
         else:
             level = int(path[1])
@@ -200,13 +201,13 @@ class CatalogPathIndex(CatalogIndex):
         level = 0
         operator = self.useOperator
 
-        if isinstance(query, basestring):
+        if isinstance(query, six.string_types):
             paths = [query]
         elif isinstance(query, (tuple, list)):
             paths = query
         else:
             paths = query.get('query', [])
-            if isinstance(paths, basestring):
+            if isinstance(paths, six.string_types):
                 paths = [ paths ]
             level = query.get('level', 0)
             operator = query.get('operator', self.useOperator).lower()

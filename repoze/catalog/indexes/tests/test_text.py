@@ -1,5 +1,7 @@
 import unittest
 
+import six
+
 _marker = object()
 
 class TestCatalogTextIndex(unittest.TestCase):
@@ -90,7 +92,7 @@ class TestCatalogTextIndex(unittest.TestCase):
 
     def test_applyDoesNotContain_with_unindexed_doc(self):
         def discriminator(obj, default):
-            if isinstance(obj, basestring):
+            if isinstance(obj, six.string_types):
                 return obj
             return default
         index = self._makeOne(discriminator)

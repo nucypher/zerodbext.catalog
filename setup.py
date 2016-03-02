@@ -30,6 +30,7 @@ INSTALL_REQUIRES = [
     'zope.component',
     'ZODB3',
     'zope.index >= 3.5.0',
+    'six'
 ]
 
 TESTING_EXTRAS = ['nose', 'coverage']

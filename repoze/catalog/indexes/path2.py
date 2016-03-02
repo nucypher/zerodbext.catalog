@@ -1,3 +1,4 @@
+import six
 from zope.interface import implementer
 
 import BTrees
@@ -38,12 +39,12 @@ class CatalogPathIndex2(CatalogIndex):  #pragma NO COVERAGE
 
     def __init__(self, discriminator, attr_discriminator=None):
         if not callable(discriminator):
-            if not isinstance(discriminator, basestring):
+            if not isinstance(discriminator, six.string_types):
                 raise ValueError('discriminator value must be callable or a '
                                  'string')
         self.discriminator = discriminator
         if attr_discriminator is not None and not callable(attr_discriminator):
-            if not isinstance(attr_discriminator, basestring):
+            if not isinstance(attr_discriminator, six.string_types):
                 raise ValueError('attr_discriminator value must be callable '
                                  'or a string')
         self.attr_discriminator = attr_discriminator
@@ -66,7 +67,7 @@ class CatalogPathIndex2(CatalogIndex):  #pragma NO COVERAGE
         if not path:
             raise ValueError('path must be nonempty (not %s)' % str(path))
 
-        if isinstance(path, basestring):
+        if isinstance(path, six.string_types):
             path = path.rstrip('/')
             path = tuple(path.split('/'))
 
@@ -355,7 +356,7 @@ class CatalogPathIndex2(CatalogIndex):  #pragma NO COVERAGE
         documentation for the ``search`` method of this class to
         understand paths, depths, and the ``include_path`` argument.
         """
-        if isinstance(query, (basestring, tuple, list)):
+        if isinstance(query, tuple(list(six.string_types) + [tuple, list])):
             path = query
             depth = None
             include_path = False

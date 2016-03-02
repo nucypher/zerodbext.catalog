@@ -178,7 +178,7 @@ class CatalogFieldIndex(CatalogIndex, FieldIndex):
                     n+=1
                     yield docid
                     if limit and n >= limit:
-                        raise StopIteration
+                        return
 
     def nbest_ascending(self, docids, limit):
         if limit is None: #pragma NO COVERAGE
@@ -190,7 +190,7 @@ class CatalogFieldIndex(CatalogIndex, FieldIndex):
         it = iter(h)
         result = sorted(islice(it, 0, limit))
         if not result: #pragma NO COVERAGE
-            raise StopIteration
+            return
         insort = bisect.insort
         pop = result.pop
         los = result[-1]    # los --> Largest of the nsmallest
@@ -232,7 +232,7 @@ class CatalogFieldIndex(CatalogIndex, FieldIndex):
             n += 1
             yield docid
             if limit and n >= limit:
-                raise StopIteration
+                return
 
     def search(self, queries, operator='or'):
         sets = []

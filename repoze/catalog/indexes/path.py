@@ -221,7 +221,7 @@ class CatalogPathIndex(CatalogIndex):
 
         else:
             rs = None
-            sets.sort(lambda x, y: cmp(len(x), len(y)))
+            sets.sort(lambda x, y: len(x) < len(y))
             for set in sets:
                 rs = self.family.IF.intersection(rs, set)
                 if not rs:

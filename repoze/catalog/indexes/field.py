@@ -182,7 +182,7 @@ class CatalogFieldIndex(CatalogIndex, FieldIndex):
 
     def nbest_ascending(self, docids, limit):
         if limit is None: #pragma NO COVERAGE
-            raise RuntimeError, 'n-best used without limit'
+            raise RuntimeError('n-best used without limit')
 
         # lifted from heapq.nsmallest
 
@@ -206,7 +206,7 @@ class CatalogFieldIndex(CatalogIndex, FieldIndex):
 
     def nbest_descending(self, docids, limit):
         if limit is None: #pragma NO COVERAGE
-            raise RuntimeError, 'N-Best used without limit'
+            raise RuntimeError('N-Best used without limit')
         iterable = nsort(docids, self._rev_index)
         for value, docid in heapq.nlargest(limit, iterable):
             yield docid

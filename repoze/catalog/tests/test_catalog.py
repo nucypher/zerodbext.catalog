@@ -1,4 +1,5 @@
 import unittest
+import platform
 
 _marker = object()
 
@@ -340,11 +341,13 @@ class TestConnectionManager(unittest.TestCase):
         self.assertEqual(conn.closed, True)
 
     def test_del(self):
-        conn = DummyConnection()
-        manager = self._makeOne()
-        manager(conn)
-        del manager
-        self.assertEqual(conn.closed, True)
+        # Due to GC the conn may not be closed immediately on PyPy
+        if platform.python_implementation() != "PyPy":
+            conn = DummyConnection()
+            manager = self._makeOne()
+            manager(conn)
+            del manager
+            self.assertEqual(conn.closed, True)
 
     def test_commit(self):
         conn = DummyConnection()

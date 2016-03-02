@@ -2,14 +2,14 @@ import BTrees
 from persistent.mapping import PersistentMapping
 import transaction
 
-from zope.interface import implements
+from zope.interface import implementer
 
 from repoze.catalog.interfaces import ICatalog
 from repoze.catalog.interfaces import ICatalogIndex
 
-class Catalog(PersistentMapping):
 
-    implements(ICatalog)
+@implementer(ICatalog)
+class Catalog(PersistentMapping):
 
     family = BTrees.family32
 

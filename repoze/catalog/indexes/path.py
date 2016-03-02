@@ -1,4 +1,4 @@
-from zope.interface import implements
+from zope.interface import implementer
 from persistent import Persistent
 
 import BTrees
@@ -10,6 +10,8 @@ from repoze.catalog.indexes.common import CatalogIndex
 
 _marker = ()
 
+
+@implementer(ICatalogIndex)
 class CatalogPathIndex(CatalogIndex):
 
     """Index for model paths (tokens separated by '/' characters)
@@ -33,7 +35,6 @@ class CatalogPathIndex(CatalogIndex):
     - NotEq
 
     """
-    implements(ICatalogIndex)
     useOperator = 'or'
 
     family = BTrees.family32

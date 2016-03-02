@@ -35,7 +35,7 @@ class CatalogPathIndex2Tests(unittest.TestCase):
         def _discriminator(obj, default):
             """ """
         index = self._makeOne(discriminator=_discriminator)
-        self.failUnless(index.discriminator is _discriminator)
+        self.assertTrue(index.discriminator is _discriminator)
 
     def test_ctor_string_discriminator(self):
         index = self._makeOne(discriminator='abc')
@@ -48,7 +48,7 @@ class CatalogPathIndex2Tests(unittest.TestCase):
         def _attr_discriminator(obj, default):
             """ """
         index = self._makeOne(attr_discriminator=_attr_discriminator)
-        self.failUnless(index.attr_discriminator is _attr_discriminator)
+        self.assertTrue(index.attr_discriminator is _attr_discriminator)
 
     def test_ctor_string_attr_discriminator(self):
         index = self._makeOne(attr_discriminator='abc')
@@ -69,12 +69,12 @@ class CatalogPathIndex2Tests(unittest.TestCase):
     def test_empty_index(self):
         index = self._makeOne({})
         self.assertEqual(len(index), 0)
-        self.failUnless(index) # True even if empty
+        self.assertTrue(index) # True even if empty
 
     def test_nonempty_index(self):
         index = self._makeOne(VALUES)
         self.assertEqual(len(index), 22)
-        self.failUnless(index)
+        self.assertTrue(index)
 
     def test_index_object_bad_path(self):
         index = self._makeOne()
@@ -109,8 +109,8 @@ class CatalogPathIndex2Tests(unittest.TestCase):
         index.index_doc(1, Dummy())
         del dummy.path
         index.index_doc(1, Dummy())
-        self.failIf(('', 'abc') in index.path_to_docid)
-        self.failIf(1 in index.docid_to_path)
+        self.assertFalse(('', 'abc') in index.path_to_docid)
+        self.assertFalse(1 in index.docid_to_path)
 
     def test_unindex_nonesuch(self):
         index = self._makeOne({})
@@ -281,7 +281,7 @@ class CatalogPathIndex2Tests(unittest.TestCase):
         result = index.search('/disjoint')
         self.assertEqual(sorted(result), [21])
         result = index.search('/')
-        self.failUnless(22 in result)
+        self.assertTrue(22 in result)
 
     def test_disjoint_resolved_random_order(self):
         index = self._makeOne({})

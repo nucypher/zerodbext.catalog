@@ -28,7 +28,7 @@ except IOError:
 INSTALL_REQUIRES = [
     'setuptools',
     'zope.component',
-    'ZODB3',
+    'ZODB',
     'zope.index >= 3.5.0',
     'six'
 ]

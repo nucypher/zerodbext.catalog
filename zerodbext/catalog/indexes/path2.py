@@ -3,8 +3,8 @@ from zope.interface import implementer
 
 import BTrees
 
-from repoze.catalog.interfaces import ICatalogIndex
-from repoze.catalog.indexes.common import CatalogIndex
+from zerodbext.catalog.interfaces import ICatalogIndex
+from zerodbext.catalog.indexes.common import CatalogIndex
 
 _marker = object()
 
@@ -21,7 +21,7 @@ class CatalogPathIndex2(CatalogIndex):  #pragma NO COVERAGE
     limited by depth) of a certain path.
 
     This index differs from the original
-    ``repoze.catalog.indexes.path.CatalogPath`` index inasmuch as it
+    ``zerodbext.catalog.indexes.path.CatalogPath`` index inasmuch as it
     actually retains a graph representation of the objects in the path
     space instead of relying on 'level' information; query results
     relying on this level information may or may not be correct for

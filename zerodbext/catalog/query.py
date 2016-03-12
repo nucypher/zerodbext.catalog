@@ -615,8 +615,8 @@ class Name(object):
 
     Example::
 
-        from repoze.catalog.query import Eq
-        from repoze.catalog.query import Name
+        from zerodbext.catalog.query import Eq
+        from zerodbext.catalog.query import Name
 
         # Define query at module scope
         find_cats = Eq('color', Name('color')) & Eq('sex', Name('sex'))

@@ -6,8 +6,8 @@ import BTrees
 
 from BTrees.Length import Length
 
-from repoze.catalog.interfaces import ICatalogIndex
-from repoze.catalog.indexes.common import CatalogIndex
+from zerodbext.catalog.interfaces import ICatalogIndex
+from zerodbext.catalog.indexes.common import CatalogIndex
 
 _marker = ()
 

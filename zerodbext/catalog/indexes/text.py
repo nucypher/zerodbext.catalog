@@ -4,8 +4,8 @@ from zope.interface import implementer
 from zope.index.interfaces import IIndexSort
 from zope.index.text import TextIndex
 
-from repoze.catalog.interfaces import ICatalogIndex
-from repoze.catalog.indexes.common import CatalogIndex
+from zerodbext.catalog.interfaces import ICatalogIndex
+from zerodbext.catalog.indexes.common import CatalogIndex
 
 
 @implementer(ICatalogIndex, IIndexSort)

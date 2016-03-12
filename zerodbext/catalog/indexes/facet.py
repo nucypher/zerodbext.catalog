@@ -7,8 +7,8 @@ import six
 from persistent import Persistent
 from zope.interface import implementer
 
-from repoze.catalog.indexes.keyword import CatalogKeywordIndex
-from repoze.catalog.interfaces import ICatalogIndex
+from zerodbext.catalog.indexes.keyword import CatalogKeywordIndex
+from zerodbext.catalog.interfaces import ICatalogIndex
 
 _marker = ()
 

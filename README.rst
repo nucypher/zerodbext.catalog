@@ -1,11 +1,10 @@
 ================
- repoze.catalog
+ zerodbext.catalog
 ================
 
-A Python indexing and searching system based on `zope.index`_.
+A Python indexing and searching system based on `zope.index`_, for of `repoze.catalog`_.
 
-.. _`zope.index`: http://pypi.python.org/pypi/zope.index
+.. _`zope.index`: https://pypi.python.org/pypi/zope.index
+.. _`repoze.catalog`: https://pypi.python.org/pypi/repoze.catalog
 
-See the ``docs`` subdirectory for documentation or the `online docs
-<http://docs.repoze.org/catalog/>`_.
-
+Important changes include dependency cleanup and Python3 support: thanks to micxjo

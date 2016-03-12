@@ -8,9 +8,9 @@ from zope.interface import implementer
 
 from zope.index.field import FieldIndex
 
-from repoze.catalog.interfaces import ICatalogIndex
-from repoze.catalog.indexes.common import CatalogIndex
-from repoze.catalog import RangeValue
+from zerodbext.catalog.interfaces import ICatalogIndex
+from zerodbext.catalog.indexes.common import CatalogIndex
+from zerodbext.catalog import RangeValue
 
 _marker = []
 

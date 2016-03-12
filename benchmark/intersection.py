@@ -52,11 +52,11 @@ import random
 import sys
 import time
 
-from repoze.catalog.catalog import ConnectionManager
-from repoze.catalog.catalog import FileStorageCatalogFactory
-from repoze.catalog.indexes.field import CatalogFieldIndex
-from repoze.catalog.query import Eq
-from repoze.catalog.query import BoolOp
+from zerodbext.catalog.catalog import ConnectionManager
+from zerodbext.catalog.catalog import FileStorageCatalogFactory
+from zerodbext.catalog.indexes.field import CatalogFieldIndex
+from zerodbext.catalog.query import Eq
+from zerodbext.catalog.query import BoolOp
 
 _marker = object()
 random.seed()

@@ -2,7 +2,7 @@
  zerodbext.catalog
 ================
 
-A Python indexing and searching system based on `zope.index`_, for of `repoze.catalog`_.
+A Python indexing and searching system based on `zope.index`_, fork of `repoze.catalog`_.
 
 .. _`zope.index`: https://pypi.python.org/pypi/zope.index
 .. _`repoze.catalog`: https://pypi.python.org/pypi/repoze.catalog
